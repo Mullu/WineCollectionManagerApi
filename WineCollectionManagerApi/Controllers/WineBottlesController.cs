@@ -20,7 +20,7 @@ namespace WineCollectionManagerApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<WineBottleModel>>> GetAll()
+        public async Task<ActionResult<IEnumerable<WineBottleModel>>> GetAllWineBottles()
         {
             var wineBottles = await _wineBottleService.GetAll();
             if (wineBottles == null || !wineBottles.Any())
@@ -32,7 +32,7 @@ namespace WineCollectionManagerApi.Controllers
         }
 
         [HttpGet("winemaker/{winemakerId}")]
-        public async Task<ActionResult<IEnumerable<WineBottleModel>>> GetByWinemakerId(int winemakerId)
+        public async Task<ActionResult<IEnumerable<WineBottleModel>>> GetWineBottlesByWinemakerId(int winemakerId)
         {
             if (winemakerId < 0)
                 return BadRequest("Winemaker ID must be a non-negative integer.");
@@ -47,7 +47,7 @@ namespace WineCollectionManagerApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<WineBottleModel>> GetById(int id)
+        public async Task<ActionResult<WineBottleModel>> GetWineBottleById(int id)
         {
             if (id < 0)
                 return BadRequest("Wine bottle ID must be a non-negative integer.");
@@ -60,7 +60,7 @@ namespace WineCollectionManagerApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] WineBottleCreateModel wineBottleCreate)
+        public async Task<ActionResult> AddWineBottle([FromBody] WineBottleCreateModel wineBottleCreate)
         {
             if (wineBottleCreate == null)
                 return BadRequest("Wine bottle creation data is required.");
@@ -73,11 +73,11 @@ namespace WineCollectionManagerApi.Controllers
             var wineBottle = _mapper.Map<WineBottleModel>(wineBottleCreate);
             await _wineBottleService.Add(wineBottle);
             
-            return CreatedAtAction(nameof(GetById), new { id = wineBottle.Id }, wineBottle);
+            return CreatedAtAction(nameof(GetWineBottleById), new { id = wineBottle.Id }, wineBottle);
         }
 
         [HttpPut("{id}")]
-        public Task<ActionResult> Update(int id, [FromBody] WineBottleModel wineBottle)
+        public Task<ActionResult> UpdateWineBottle(int id, [FromBody] WineBottleModel wineBottle)
         {
             if (id < 0)
                 return Task.FromResult<ActionResult>(BadRequest("Wine bottle ID must be a non-negative integer."));
@@ -94,7 +94,7 @@ namespace WineCollectionManagerApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<ActionResult> DeleteWineBottleById(int id)
         {
             if (id < 0)
                 return BadRequest("Wine bottle ID must be a non-negative integer.");
@@ -105,7 +105,7 @@ namespace WineCollectionManagerApi.Controllers
         }
 
         [HttpGet("filter")]
-        public async Task<ActionResult<IEnumerable<WineBottleModel>>> Filter(
+        public async Task<ActionResult<IEnumerable<WineBottleModel>>> FilterWineBottles(
             [FromQuery] int? year,
             [FromQuery] int? size,
             [FromQuery] int? countInWineCellar,

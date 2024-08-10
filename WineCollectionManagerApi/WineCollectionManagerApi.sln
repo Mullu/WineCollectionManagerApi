@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WineCollectionManagerApi", "WineCollectionManagerApi.csproj", "{F9407590-37D6-4A44-AD19-4E662FDE92FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WineCollectionManagerApiTests", "..\WineCollectionManagerApiTests\WineCollectionManagerApiTests.csproj", "{63CC7C43-D209-40C9-8B57-3DDB18AB4FCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F9407590-37D6-4A44-AD19-4E662FDE92FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9407590-37D6-4A44-AD19-4E662FDE92FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9407590-37D6-4A44-AD19-4E662FDE92FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63CC7C43-D209-40C9-8B57-3DDB18AB4FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63CC7C43-D209-40C9-8B57-3DDB18AB4FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63CC7C43-D209-40C9-8B57-3DDB18AB4FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63CC7C43-D209-40C9-8B57-3DDB18AB4FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
