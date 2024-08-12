@@ -51,6 +51,9 @@ The API follows a clean architecture pattern with the following components:
 
 The API will be available at `http://localhost:5000`.
 
+Here is sample output from GetAllWineBottles endpoint
+![alt text](GetAllWineBottlesFromSwaggerRun.png)
+
 ### Option 2: Running with Docker
 
 1. **Ensure Docker is Installed**: Make sure Docker is installed on your machine.
@@ -66,6 +69,10 @@ The API will be available at `http://localhost:5000`.
     ```
 
 The API will be available at `http://localhost:8080`.
+
+Here is sample output from GetAllWineBottles endpoint.
+
+![alt text](GetAllWineBottlesFromDockerRun.png)
 
 ## Dependencies
 
