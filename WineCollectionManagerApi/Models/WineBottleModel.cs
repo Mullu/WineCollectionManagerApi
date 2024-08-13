@@ -17,6 +17,7 @@ namespace WineCollectionManagerApi.Models
         public int Year { get; set; }
 
         [JsonPropertyName("Size")]
+        [Range(125, int.MaxValue, ErrorMessage = "Size in milli liter must not be less than 125.")]
         public int SizeInMilliLiter { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "Count in wine cellar must be a non-negative integer.")]

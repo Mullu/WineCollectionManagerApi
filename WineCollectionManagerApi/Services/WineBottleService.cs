@@ -48,6 +48,7 @@ namespace WineCollectionManagerApi.Services
         public void Update(WineBottleModel wineBottle)
         {
             var index = _wineBottles.FindIndex(wb => wb.Id == wineBottle.Id);
+
             if (index >= 0)
             {
                 _wineBottles[index] = wineBottle;
@@ -57,6 +58,7 @@ namespace WineCollectionManagerApi.Services
         public async Task Delete(int id)
         {
             var wineBottle = _wineBottles.FirstOrDefault(wb => wb.Id == id);
+
             if (wineBottle != null)
             {
                 var winemaker = await _winemakerService.GetById(wineBottle.WinemakerId);

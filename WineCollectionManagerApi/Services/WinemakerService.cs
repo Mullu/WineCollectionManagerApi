@@ -25,6 +25,7 @@ namespace WineCollectionManagerApi.Services
         public Task Update(WineMakerModel winemaker)
         {
             var index = _winemakers.FindIndex(w => w.Id == winemaker.Id);
+
             if (index >= 0)
             {
                 _winemakers[index] = winemaker;
@@ -36,6 +37,7 @@ namespace WineCollectionManagerApi.Services
         public Task Delete(int id)
         {
             var winemaker = _winemakers.FirstOrDefault(w => w.Id == id);
+
             if (winemaker != null)
             {
                 _winemakers.Remove(winemaker);

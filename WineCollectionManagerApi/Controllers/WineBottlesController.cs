@@ -66,9 +66,7 @@ namespace WineCollectionManagerApi.Controllers
                 return BadRequest("Wine bottle creation data is required.");
 
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             var wineBottle = _mapper.Map<WineBottleModel>(wineBottleCreate);
             await _wineBottleService.Add(wineBottle);
@@ -88,7 +86,10 @@ namespace WineCollectionManagerApi.Controllers
             if (id != wineBottle.Id)
                 return Task.FromResult<ActionResult>(BadRequest("ID mismatch."));
 
-           _wineBottleService.Update(wineBottle);
+            if (!ModelState.IsValid)
+                return Task.FromResult<ActionResult>(BadRequest(ModelState));
+
+            _wineBottleService.Update(wineBottle);
 
             return Task.FromResult<ActionResult>(NoContent());
         }
@@ -113,6 +114,21 @@ namespace WineCollectionManagerApi.Controllers
             [FromQuery] string? taste,
             [FromQuery] string? foodPairing)
         {
+            if (year.HasValue && (year < 1900 || year > 2100))
+                ModelState.AddModelError(nameof(year), "Year must be between 1900 and 2100.");
+
+            if (size.HasValue && size <= 125)
+                ModelState.AddModelError(nameof(size), "Size must not less than 125.");
+
+            if (countInWineCellar.HasValue && countInWineCellar < 0)
+                ModelState.AddModelError(nameof(countInWineCellar), "Count in wine cellar must be a non-negative integer.");
+
+            if (style.HasValue && !Enum.IsDefined(typeof(WineStyle), style.Value))
+                ModelState.AddModelError(nameof(style), "Invalid wine style.");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var wineBottles = await _wineBottleService
                 .Filter(year, size, countInWineCellar, style, taste, foodPairing);
             
